@@ -1,0 +1,13 @@
+version: '3'
+services:
+  jenkins:
+    image: 'jenkinsci/blueocean'
+    container_name: jenkins
+    restart: always
+    ports:
+      - '8081:8080'
+      - '50000:50000'
+    volumes:
+      - '/var/jenkins_home:/var/jenkins_home'
+    environment:
+      - JAVA_OPTS=-Duser.timezone=Asia/Shanghai

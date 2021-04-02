@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  proxy:
+    image: traefik:v2.0
+    command: --api.insecure=true --providers.docker
+    container_name: traefik_proxy
+    # networks:
+    #   - webgateway
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  whoami:
+    # A container that exposes an API to show its IP address
+    image: containous/whoami
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+    # networks:
+    #   - webgateway
+# networks:
+#   webgateway:
+#     driver: bridge

@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:1.22
+    ports:
+      - 6831:6831/udp # jaeger-agent 以compact协议接收jaeger.thrift数据
+      - 6832:6832/udp # jaeger-agent 以binary协议接收jaeger.thrift数据
+      - 5775:5775/udp # jaeger-agent 以compact协议接收zipkin.thrift数据
+      - 5778:5778 # jaeger-agent Jaeger的服务配置端口
+      - 16686:16686 # jaeger-query Jaeger的Web UI
+      - 14268:14268 # jaeger-collector 通过Client直接接收jaeger.thrift数据
+      - 14250:14250 # jaeger-collector 接收 model.proto
+      - 9411:9411 # jaeger-collector 兼容Zipkin的HTTP端口
+    networks:
+      - jaeger
+
+networks:
+  jaeger:
+    driver: bridge

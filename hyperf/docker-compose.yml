@@ -1,0 +1,59 @@
+version: "3"
+
+networks:
+    hyperf:
+        driver: bridge
+
+services:
+    redis:
+        container_name: redis
+        image: redis
+        restart: always
+        volumes:
+            - ${REDIS_DIR}/data:/data
+            - ${REDIS_DIR}/redis.conf:/usr/local/etc/redis/redis.conf
+        ports:
+            - "6379:6379"
+        networks:
+            - hyperf
+        # command: redis-server --requirepass ZpzyQrpUclFoikLV
+        command: redis-server /usr/local/etc/redis/redis.conf
+        tty: true
+
+    mysql:
+        container_name: mysql
+        image: mysql:5.7.20
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: hyperf
+            MYSQL_USER: hyperf
+            MYSQL_PASSWORD: hyperf
+        volumes:
+            # 外部数据卷
+            - ${MYSQL_DIR}/data:/var/lib/mysql
+            # 外部初始化文件，文件名必须以 .sh 或 .sql 结尾
+            - ${MYSQL_DIR}/init:/docker-entrypoint-initdb.d
+            # 外部配置文件
+            # - ${MYSQL_DIR}/conf.d:/etc/mysql/conf.d
+        ports:
+            - "3306:3306"
+        networks:
+            - hyperf
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+        tty: true
+
+    hyperf:
+        container_name: hyperf
+        image: hyperf/hyperf
+        volumes:
+            - ../wwwroot:/wwwroot
+        ports:
+            - "9501:9501"
+            - "9502:9502"
+        networks:
+            - hyperf
+        # command: php /wwwroot/bin/hyperf.php start
+        tty: true

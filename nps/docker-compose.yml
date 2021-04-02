@@ -1,0 +1,34 @@
+version: "3.3"
+
+networks:
+    nps:
+        driver: bridge
+
+services:
+    npc:
+        container_name: npc
+        image: ffdfgdfg/npc
+        restart: always
+        volumes:
+            - ${CONF_DIR}:/conf
+        ports:
+            - "8082:8082"
+            - "8083:8083"
+            - "8084:8084"
+            - "19009:19009"
+        networks:
+            - nps
+        command: /npc /conf/npc.conf
+        tty: true
+    nps:
+        container_name: nps
+        image: ffdfgdfg/nps
+        restart: always
+        volumes:
+            - ${CONF_DIR}:/conf
+        ports:
+            - "8081:8081"
+        networks:
+            - nps
+        command: /nps
+        tty: true

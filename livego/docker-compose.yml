@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  livego:
+    container_name: livego
+    image: gwuhaolin/livego
+    volumes:
+      - ./config:/app/config
+    ports:
+      - "1935:1935"
+      - "7001:7001"
+      - "7002:7002"
+      - "8090:8090"
+    command: ./livego

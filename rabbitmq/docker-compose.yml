@@ -1,0 +1,21 @@
+version: "3"
+# networks:
+#     py:
+#       driver: bridge
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    environment:
+        - RABBITMQ_ERLANG_COOKIE="SWQOKODSQALRPCLNMEQG"
+        - RABBITMQ_DEFAULT_USER=artifact
+        - RABBITMQ_DEFAULT_PASS=artifact
+        - RABBITMQ_DEFAULT_VHOST="/artifact-dev"
+    ports:
+        - "5672:5672"
+        - "15671:15671"
+        - "15672:15672"
+    # networks:
+    #     - py
+    tty: true
