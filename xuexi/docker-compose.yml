@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  xuexi:
+    image: techxuexi/techxuexi-amd64:latest
+    container_name: xuexi
+    restart: unless-stopped
+    volumes:
+       - ./user:/xuexi/user
+    environment:
+      - AccessToken=0787bab863f84f02ab3c5a1510336e66
+      - Secret=
+      - Pushmode=4
+      - CRONTIME=0 18 * * *
+    # build:
+    #   context: .
+    #   shm_size: '2gb'
+    shm_size: '2gb'
