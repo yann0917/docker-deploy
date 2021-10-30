@@ -1,0 +1,51 @@
+1:C 30 Oct 2021 22:03:59.156 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 30 Oct 2021 22:03:59.163 # Redis version=5.0.7, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 30 Oct 2021 22:03:59.183 # Configuration loaded
+1:M 30 Oct 2021 22:03:59.215 * No cluster configuration found, I'm 54ae806fa3660ecbb0b96cfafdab76ae31cc1ab6
+1:M 30 Oct 2021 22:03:59.224 * Running mode=cluster, port=7003.
+1:M 30 Oct 2021 22:03:59.228 # Server initialized
+1:M 30 Oct 2021 22:03:59.231 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+1:M 30 Oct 2021 22:03:59.243 * Ready to accept connections
+1:signal-handler (1635602675) Received SIGTERM scheduling shutdown...
+1:M 30 Oct 2021 22:04:35.958 # User requested shutdown...
+1:M 30 Oct 2021 22:04:35.962 * Calling fsync() on the AOF file.
+1:M 30 Oct 2021 22:04:35.971 # Redis is now ready to exit, bye bye...
+1:C 30 Oct 2021 22:04:40.965 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 30 Oct 2021 22:04:40.970 # Redis version=5.0.7, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 30 Oct 2021 22:04:40.973 # Configuration loaded
+1:M 30 Oct 2021 22:04:40.989 * Node configuration loaded, I'm 54ae806fa3660ecbb0b96cfafdab76ae31cc1ab6
+1:M 30 Oct 2021 22:04:40.993 * Running mode=cluster, port=7003.
+1:M 30 Oct 2021 22:04:40.996 # Server initialized
+1:M 30 Oct 2021 22:04:40.998 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+1:M 30 Oct 2021 22:04:41.005 * Ready to accept connections
+1:signal-handler (1635602688) Received SIGTERM scheduling shutdown...
+1:M 30 Oct 2021 22:04:49.033 # User requested shutdown...
+1:M 30 Oct 2021 22:04:49.037 * Calling fsync() on the AOF file.
+1:M 30 Oct 2021 22:04:49.041 # Redis is now ready to exit, bye bye...
+1:C 30 Oct 2021 22:04:53.626 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 30 Oct 2021 22:04:53.633 # Redis version=5.0.7, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 30 Oct 2021 22:04:53.637 # Configuration loaded
+1:M 30 Oct 2021 22:04:53.646 * Node configuration loaded, I'm 54ae806fa3660ecbb0b96cfafdab76ae31cc1ab6
+1:M 30 Oct 2021 22:04:53.650 * Running mode=cluster, port=7003.
+1:M 30 Oct 2021 22:04:53.653 # Server initialized
+1:M 30 Oct 2021 22:04:53.656 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+1:M 30 Oct 2021 22:04:53.661 * Ready to accept connections
+1:M 30 Oct 2021 22:05:37.848 # configEpoch set to 3 via CLUSTER SET-CONFIG-EPOCH
+1:M 30 Oct 2021 22:05:42.152 * Replica 172.22.0.1:7006 asks for synchronization
+1:M 30 Oct 2021 22:05:42.155 * Partial resynchronization not accepted: Replication ID mismatch (Replica asked for '2541e1aa4b968156f68e8a52b4ea1961b26fb90c', my replication IDs are '8c080961fb4888d56d7bc636adafa30932311c6b' and '0000000000000000000000000000000000000000')
+1:M 30 Oct 2021 22:05:42.158 * Starting BGSAVE for SYNC with target: disk
+1:M 30 Oct 2021 22:05:42.162 * Background saving started by pid 19
+19:C 30 Oct 2021 22:05:42.169 * DB saved on disk
+19:C 30 Oct 2021 22:05:42.173 * RDB: 0 MB of memory used by copy-on-write
+1:M 30 Oct 2021 22:05:42.226 * Background saving terminated with success
+1:M 30 Oct 2021 22:05:42.233 * Synchronization with replica 172.22.0.1:7006 succeeded
+1:M 30 Oct 2021 22:05:42.832 # Cluster state changed: ok
+1:M 30 Oct 2021 22:20:01.783 * Marking node 129f476d497cbfb74713d888cd4a62c35c8688b1 as failing (quorum reached).
+1:M 30 Oct 2021 22:20:01.786 # Cluster state changed: fail
+1:M 30 Oct 2021 22:20:01.924 # Failover auth granted to 6ad01e62f0b05355a68ef880a599a9ebc68c3672 for epoch 7
+1:M 30 Oct 2021 22:20:01.956 # Cluster state changed: ok
+1:M 30 Oct 2021 22:21:56.573 * Clear FAIL state for node 129f476d497cbfb74713d888cd4a62c35c8688b1: master without slots is reachable again.
+1:signal-handler (1635603754) Received SIGTERM scheduling shutdown...
+1:M 30 Oct 2021 22:22:34.961 # User requested shutdown...
+1:M 30 Oct 2021 22:22:34.964 * Calling fsync() on the AOF file.
+1:M 30 Oct 2021 22:22:34.968 # Redis is now ready to exit, bye bye...
