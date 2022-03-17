@@ -22,6 +22,164 @@
 * [traefik](traefik/docker-compose.yml) 负载均衡
 * [学习强国]()
 
+## 安装后注意的事项
+
+docker配置文件地址(linux): /etc/docker/daemon.json
+
+### 镜像
+
+这边提供一些中国常用的镜像
+
+```bash
+{
+  "registry-mirrors": [
+      "https://hub-mirror.c.163.com",
+      "https://mirror.baidubce.com",
+      "https://docker.mirrors.ustc.edu.cn/",
+      "https://reg-mirror.qiniu.com",
+      "https://registry.docker-cn.com"
+  ]
+}
+```
+
+阿里云的镜像地址在这里获取: https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+
+### docker的ip网段
+
+docker进程启动会创建个虚拟网卡 docker0
+
+```bash
+ip addr
+
+6: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether 02:42:b7:db:e2:61 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+```
+
+如果你的服务器的局域网的网段也是 172.17.0.1/16网段, 那就和docker0这个网卡的网段冲突了.
+你本来2个局域网的能连通的机器, 启动docker后, 可能就连不通了!
+可以通过路由表来看.(mac没有ip命令, 需要brew install iproute2mac)
+```bash
+ip route
+或者
+netstat -nr
+```
+
+改docker的网段是在配置文件里面: /etc/docker/daemon.json
+改完记得重启下
+
+```bash
+"bip": "10.50.0.1/16"
+```
+
+### docker-compose的网段
+
+docker有自己的docker0虚拟网卡, docker-compose启动的一组也有虚拟网卡.
+一样也会发生网段冲突的情况
+修改方式有2种
+1. docker的配置文件中改, 不要和docker0网段冲突
+改完要重启docker
+```bash
+"default-address-pools" : [
+        {
+          "base" : "10.11.0.0/16",
+          "size" : 24
+        }
+      ]
+```
+
+2. docker-compose.yaml中改
+
+```bash
+...省略一些
+elasticsearch:
+    image: elasticsearch:7.1.0
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - "cluster.name=elasticsearch" #集群名称为elasticsearch
+      - "discovery.type=single-node" #单节点启动
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m" #jvm内存分配为512MB
+      - "ELASTIC_PASSWORD=elastic123"
+    ulimits:  #生产环境需要配置的系统配置
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - /opt/es/data:/usr/share/elasticsearch/data
+      - /opt/es/plugins:/usr/share/elasticsearch/plugins
+      - /opt/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /opt/es/logs:/user/share/elasticsearch/logs
+    ports:
+      - 9200:9200
+    logging:
+      driver: "json-file"
+      options:
+        max-size: '500m'
+        max-file: '3'
+    networks:
+      - es7net
+      
+networks:
+  es7net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.88.12.0/24
+        gateway: 10.88.12.1
+```
+
+你如果需要控制每个服务的ip可以这样写
+
+```bash
+version: '3.3'
+networks:
+    study_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.66.1.0/24
+services:
+    web:
+        networks:
+            study_net:
+                ipv4_address: 172.66.1.100
+    db:
+        networks:
+            study_net:
+                ipv4_address: 172.66.1.200
+```
+
+### 日志的配置
+
+容器运行中会产生大量日志, 不想容器占用空间越来越大, 就要控制日志大小
+分为2个, 单docker容器和docker-compose
+1. docker容器
+   docker配置文件里面改
+```bash
+"log-opts": {"max-size":"500m", "max-file":"3"},
+```
+
+2. docker-compose
+    docker-compose.yaml里面改
+```yaml
+    ports:
+      - 9200:9200
+    logging:
+      driver: "json-file"
+      options:
+        max-size: '500m'
+        max-file: '3'
+    networks:
+      - es7net
+```
+
 ## docker 常用命令
 
 ```bash
