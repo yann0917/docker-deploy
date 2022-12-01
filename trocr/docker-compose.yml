@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  trwebocr:
+    image: mmmz/trwebocr:latest
+    ports:
+      - 8089:8089
+    networks:
+      - trwebocr
+
+networks:
+  trwebocr:
+    driver: bridge
