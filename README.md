@@ -20,7 +20,8 @@
 * [nps](nps/docker-compose.yml) 轻量级、高性能、功能强大的内网穿透代理服务器
 * [rabbitmq](rabbitmq/docker-compose.yml) MQ
 * [traefik](traefik/docker-compose.yml) 负载均衡
-* [学习强国]()
+* [学习强国](xuexi/docker-compose.yml) 学习强国
+* [alist](alist/docker-compose.yml) 一个支持多存储的文件列表程序，使用 Gin 和 Solidjs
 
 ## 安装后注意的事项
 
