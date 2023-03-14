@@ -1,7 +1,7 @@
 # message-pusher
 
 [github](https://github.com/songquanpeng/message-pusher)
-[message-pusher 使用文档](https://alist.nn.ci/zh/)
+[message-pusher 使用文档](https://github.com/songquanpeng/message-pusher)
 
 ## Q&A
 
