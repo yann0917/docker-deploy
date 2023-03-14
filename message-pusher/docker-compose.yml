@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  message-pusher:
+    container_name: message-pusher
+    image: justsong/message-pusher
+    environment:
+      TZ: Asia/Shanghai
+      SESSION_SECRET: cN3uLhBwUuL9RIh9
+    restart: always
+    volumes:
+      - ./data:/data
+    ports:
+      - "3000:3000"
+    command: ./message-pusher
