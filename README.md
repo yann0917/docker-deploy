@@ -22,6 +22,7 @@
 * [traefik](traefik/docker-compose.yml) 负载均衡
 * [学习强国](xuexi/docker-compose.yml) 学习强国
 * [alist](alist/docker-compose.yml) 一个支持多存储的文件列表程序，使用 Gin 和 Solidjs
+* [message-pusher](message-pusher/docker-compose.yml) 搭建专属于你的消息推送服务，支持多种消息推送方式，支持 Markdown，仅单可执行文件，开箱即用
 
 ## 安装后注意的事项
 
@@ -29,7 +30,7 @@ docker配置文件地址(linux): /etc/docker/daemon.json
 
 ### 镜像
 
-这边提供一些中国常用的镜像
+这边提供一些中国常用的镜像，[阿里云的镜像地址在这里获取](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
 
 ```bash
 {
@@ -42,8 +43,6 @@ docker配置文件地址(linux): /etc/docker/daemon.json
   ]
 }
 ```
-
-阿里云的镜像地址在这里获取: https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
 
 ### docker的ip网段
 
