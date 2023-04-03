@@ -9,6 +9,7 @@
 ## 清单
 
 * [Archery](archery/docker-compose.yml) SQL 审查平台
+* [Yearning](/yearning/docker-compose.yml) SQL审核平台
 * [elk](elk/docker-compose.yaml) ELK 日志系统
 * [gocron](gocron/docker-compose.yml) 使用Go语言开发的轻量级定时任务集中调度和管理系统
 * [graylog](graylog/docker-compose.yml) graylog 日志系统
@@ -23,6 +24,7 @@
 * [学习强国](xuexi/docker-compose.yml) 学习强国
 * [alist](alist/docker-compose.yml) 一个支持多存储的文件列表程序，使用 Gin 和 Solidjs
 * [message-pusher](message-pusher/docker-compose.yml) 搭建专属于你的消息推送服务，支持多种消息推送方式，支持 Markdown，仅单可执行文件，开箱即用
+* [Yearning](/yearning/docker-compose.yml) SQL审核平台
 
 ## 安装后注意的事项
 

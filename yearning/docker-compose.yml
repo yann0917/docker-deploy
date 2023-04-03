@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+    yearning:
+        image: chaiyd/yearning:latest
+        environment:
+           MYSQL_USER: yearning
+           MYSQL_PASSWORD: ukC2ZkcG_ZTeb
+           MYSQL_ADDR: mysql
+           MYSQL_DB: yearning
+           SECRET_KEY: dbcjqheupqjsuwsm
+           IS_DOCKER: is_docker
+        ports:
+           - 8000:8000
+        # 首次使用请先初始化
+        command: /bin/bash -c "./Yearning install && ./Yearning run"
+        depends_on:
+           - mysql
+        restart: always
+
+    mysql:
+        image: mysql:5.7
+        environment:
+           MYSQL_ROOT_PASSWORD: ukC2ZkcG_ZTeb
+           MYSQL_DATABASE: yearning
+           MYSQL_USER: yearning
+           MYSQL_PASSWORD: ukC2ZkcG_ZTeb
+        command:
+           - --character-set-server=utf8mb4
+           - --collation-server=utf8mb4_general_ci
+        volumes:
+           - ./data/mysql:/var/lib/mysql
+
+# 默认账号：admin，默认密码：Yearning_admin
